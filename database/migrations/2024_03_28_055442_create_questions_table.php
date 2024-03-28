@@ -16,12 +16,18 @@ return new class extends Migration
             $table->string('title');
             $table->foreignId('question_type_id');
             $table->foreignId('duration_id');
+            $table->foreignId('option_id');
             $table->text('answer_explanation')->nullable();
             $table->timestamps();
 
             $table->foreign('question_type_id')
                 ->references('id')
                 ->on('question_types')
+                ->onDelete('no action');
+
+            $table->foreign('option_id')
+                ->references('id')
+                ->on('options')
                 ->onDelete('no action');
 
             $table->foreign('duration_id')
